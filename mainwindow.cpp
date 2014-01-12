@@ -130,8 +130,7 @@ void MainWindow::pointToError(QString errorMessage, int index)
     errorPointer.append("^");
 
     // Print out the carrot under the error
-    //ui->textBox_calc->append(SPACES + errorPointer);
-    printToBox(errorPointer);
+    printToBox(SPACES + errorPointer);
 
     // Print out the error message underneath
     QString errMsg = (FONT_RED + ERR + errorMessage + FONT_END + BR);
