@@ -376,6 +376,9 @@ bool CalculatorFunctions::isNum(QChar ch)
     // ASCII value for single digits
     if(ch >= 48 && ch <= 57)
         return true;
+    // ex. 4567e-4
+    if(ch == 'e')
+        return true;
     return false;
 }
 

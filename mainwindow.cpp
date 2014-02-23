@@ -19,6 +19,7 @@ const QString BOLD_END = "</b>";
 const QString BR = "<br>";
 const QString ERR = "Error: ";
 const QString PI_UNICODE = "\u03C0";
+const QString UNDER_LINE = "-------------------------";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -29,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Set the initial fn tab layout
     MainWindow::on_listWidget_currentItemChanged(ui->listWidget->currentItem());
     buttonSignals();
+
 }
 
 MainWindow::~MainWindow()
@@ -105,18 +107,22 @@ void MainWindow::printToBox(QString text)
     ui->textBox_calc->append(text);
 }
 
-void MainWindow::printExpression(QString text)
+void MainWindow::printExpression(QString expression)
 {
     // Print the given expression in the textbox
-    printToBox(FONT_BLACK + HTML_SPACES +  text + FONT_END);
+    printToBox(FONT_BLACK + HTML_SPACES +  expression + FONT_END);
 }
 
-void MainWindow::printAnswer(QString text)
+void MainWindow::printAnswer(QString answer)
 {
-    if(text == "Error") return;
+    if(answer == "Error") return;
 
     // Print the answer in the textbox
-    printToBox(FONT_GREEN + BOLD + text + FONT_END + BOLD_END + BR);
+    printToBox(FONT_GREEN + BOLD + answer + FONT_END + BOLD_END);
+    printToBox(UNDER_LINE);
+
+    // Give the answer to the line edit for use on the next equation
+    ui->lineEdit_calc->setText(answer);
 }
 
 void MainWindow::pointToError(QString errorMessage, int index)
@@ -133,9 +139,9 @@ void MainWindow::pointToError(QString errorMessage, int index)
     printToBox(SPACES + errorPointer);
 
     // Print out the error message underneath
-    QString errMsg = (FONT_RED + ERR + errorMessage + FONT_END + BR);
-    //ui->textBox_calc->append(errMsg);
+    QString errMsg = (FONT_RED + ERR + errorMessage + FONT_END);
     printToBox(errMsg);
+    printToBox(UNDER_LINE + BR);
 }
 
 void MainWindow::buttonSignals()
@@ -207,7 +213,28 @@ void MainWindow::on_listWidget_currentItemChanged(QListWidgetItem *current)
 {
 
     // Check the text and perform actions accordingly
-    if(current->text() == "Modular Exponentiation")
+    if(current->text() == "Default") {
+        // Explain the function purpose
+        ui->label_fn_exp->setText("Function Explaination");
+
+        // Enable line edits
+
+        // Disable unused line edits
+        ui->lineEdit_2->setDisabled(true);
+        ui->lineEdit_3->setDisabled(true);
+        ui->lineEdit_4->setDisabled(true);
+        ui->lineEdit_5->setDisabled(true);
+        ui->lineEdit_6->setDisabled(true);
+
+        // Set text labels
+        ui->label_1->setText("");
+        ui->label_2->setText("");
+        ui->label_3->setText("");
+        ui->label_4->setText("");
+        ui->label_5->setText("");
+        ui->label_6->setText("");
+    }
+    else if(current->text() == "Modular Exponentiation")
     {
         // Explain the function purpose
         ui->label_fn_exp->setText("Modular Exponentiation function: (base ^ exponent) mod m");

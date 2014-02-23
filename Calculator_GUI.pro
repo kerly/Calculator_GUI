@@ -11,6 +11,8 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = Calculator_GUI
 TEMPLATE = app
 
+CONFIG += app_bundle
+
 
 SOURCES += main.cpp\
         mainwindow.cpp\

@@ -17,8 +17,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void printExpression(QString text);
-    void printAnswer(QString text);
+    void printExpression(QString expression);
+    void printAnswer(QString answer);
     void pointToError(QString errorMessage, int index);
     void printToBox(QString text);
 

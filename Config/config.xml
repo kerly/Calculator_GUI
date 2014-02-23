@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <Installer>
+     <Name>Kerl's Calculator</Name>
+     <Version>1.0.0</Version>
+     <Title>Kerl's Calculator</Title>
+     <RunProgram></RunProgram>
+     <RunProgramDescription></RunProgramDescription>
+     <StartMenuDir>Accessories</StartMenuDir>
+     <TargetDir>@rootDir@InstallationDirectory</TargetDir>
+ </Installer>
